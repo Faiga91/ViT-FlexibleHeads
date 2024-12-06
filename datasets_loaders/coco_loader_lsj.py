@@ -1,5 +1,7 @@
 """
-Based on the COCO loader from DETECTRON2, this script modifies the default COCO loader to remove mask annotations.
+Based on the COCO loader from DETECTRON2, 
+this script modifies the default COCO loader 
+to remove mask annotations.
 """
 
 import detectron2.data.transforms as T
@@ -9,12 +11,13 @@ from detectron2.config import LazyCall as L
 from detectron2.data import DatasetMapper
 
 # Data using LSJ
-image_size = 512
+IMG_SIZE = 512
 dataloader = model_zoo.get_config("common/data/coco.py").dataloader
 
 
-# Custom mapper to remove masks
 class CustomDatasetMapper(DatasetMapper):
+    """Custom mapper to remove masks"""
+
     def __call__(self, dataset_dict):
         """
         Modify the default DatasetMapper to remove mask annotations.
@@ -30,7 +33,7 @@ dataloader.train.mapper = L(CustomDatasetMapper)(
     is_train=True,
     augmentations=[
         # Resize images to a fixed size
-        L(T.Resize)(shape=(image_size, image_size)),
+        L(T.Resize)(shape=(IMG_SIZE, IMG_SIZE)),
         # Add random horizontal flip
         L(T.RandomFlip)(horizontal=True),
     ],
@@ -46,7 +49,7 @@ dataloader.test.mapper = L(CustomDatasetMapper)(
     is_train=False,
     augmentations=[
         # Resize images to a fixed size
-        L(T.Resize)(shape=(image_size, image_size)),
+        L(T.Resize)(shape=(IMG_SIZE, IMG_SIZE)),
     ],
     image_format="RGB",
 )
