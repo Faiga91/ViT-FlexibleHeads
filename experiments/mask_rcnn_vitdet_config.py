@@ -2,6 +2,7 @@
 Based on DETECTRON2's mask_rcnn_vitdet_b_100p.py
 """
 
+import sys
 from detectron2.data.datasets import register_coco_instances
 
 from functools import partial
@@ -12,7 +13,8 @@ from detectron2.config import LazyCall as L
 from detectron2.solver import WarmupParamScheduler
 from detectron2.modeling.backbone.vit import get_vit_lr_decay_rate
 
-from ..common.coco_loader_lsj import dataloader
+sys.path.append("..")
+from datasets_loaders.coco_loader_lsj import dataloader
 
 
 NUM_CLASSES = 1
