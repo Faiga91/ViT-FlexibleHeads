@@ -28,6 +28,8 @@ torch.cuda.empty_cache()
 
 
 def do_test(cfg, model):
+    """Run inference on the test set and
+    return the evaluation results."""
     if "evaluator" in cfg.dataloader:
         ret = inference_on_dataset(
             model,
@@ -36,6 +38,8 @@ def do_test(cfg, model):
         )
         print_csv_format(ret)
         return ret
+    else:
+        return {}
 
 
 def do_train(args, cfg):
@@ -58,8 +62,8 @@ def do_train(args, cfg):
                 ddp (dict)
     """
     model = instantiate(cfg.model)
-    logger = logging.getLogger("detectron2")
-    logger.info("Model:\n{}".format(model))
+    # logger = logging.getLogger("detectron2")
+    logger.info(f"Model:\n{model}")
     model.to(cfg.train.device)
 
     cfg.optimizer.params.model = model
@@ -112,6 +116,7 @@ def do_train(args, cfg):
 
 
 def main(args):
+    """Main function to run training or evaluation"""
     cfg = LazyConfig.load(args.config_file)
     cfg = LazyConfig.apply_overrides(cfg, args.opts)
     default_setup(cfg, args)
@@ -127,6 +132,7 @@ def main(args):
 
 
 def invoke_main() -> None:
+    """Invoke the main function."""
     args = default_argument_parser().parse_args()
     launch(
         main,

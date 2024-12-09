@@ -1,3 +1,7 @@
+"""
+Script to evaluate binary classification performance using IoU-based matching.
+"""
+
 import logging
 import torch
 from sklearn.metrics import confusion_matrix

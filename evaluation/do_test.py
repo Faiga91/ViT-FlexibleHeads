@@ -2,22 +2,19 @@ import logging
 import shutil
 import os
 import json
+
 from detectron2.config import LazyConfig, instantiate
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.data.datasets import register_coco_instances
 from detectron2.evaluation import inference_on_dataset
-
 from detectron2.data import DatasetCatalog, DatasetFromList, DatasetMapper
-
+from detectron2.data import transforms as T
 from detectron2.evaluation import print_csv_format
-
 from detectron2.structures import Instances, Boxes
+
 import torch
 import cv2
-
 from binary_classification_evaluator import BinaryClassificationEvaluator
-
-from detectron2.data import transforms as T
 
 
 logging.basicConfig(
@@ -40,6 +37,7 @@ weights_path = "output/model_final.pth"
 
 
 def trivial_batch_collator(batch):
+    """function to collate a batch of data"""
     return batch
 
 
@@ -123,6 +121,8 @@ mapper = DatasetMapper(
 
 
 class MappedDataset:
+    """Dataset class to apply a custom mapper to the dataset."""
+
     def __init__(self, dataset, mapper):
         """
         Args:

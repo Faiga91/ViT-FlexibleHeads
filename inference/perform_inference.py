@@ -1,5 +1,7 @@
 """
-This script demonstrates how to use LazyConfig to load a configuration file and run inference on a dataset.
+This script demonstrates how to use LazyConfig 
+to load a configuration file and run inference 
+on a dataset.
 """
 
 import os
