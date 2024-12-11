@@ -20,7 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install -r requirements.txt
-        python -m pip install 'git+https://github.com/Faiga91/detectron2.git
+        python -m pip install 'git+https://github.com/Faiga91/detectron2.git'
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
