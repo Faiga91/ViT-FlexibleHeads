@@ -2,23 +2,21 @@
 Script to evaluate binary classification performance using IoU-based matching.
 """
 
-import logging
 import torch
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 from torchvision.ops import box_iou
+from .logging_utils import configure_logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
-logging.getLogger("matplotlib").setLevel(logging.WARNING)
-logger = logging.getLogger(__name__)
+# Set up logging
+logger = configure_logging()
 
 
 class BinaryClassificationEvaluator:
+    """Binary classification evaluator using IoU-based matching."""
+
     def __init__(self, iou_threshold=0.5, conf_threshold=0.5):
         """
         Initialize the evaluator with configurable thresholds.
@@ -30,6 +28,7 @@ class BinaryClassificationEvaluator:
         self.iou_threshold = iou_threshold
         self.conf_threshold = conf_threshold
 
+    # pylint: disable=too-many-locals
     def compute_confusion_matrix(self, preds, targets):
         """
         Compute confusion matrix for binary classification (class 0 vs class 1).
@@ -37,7 +36,8 @@ class BinaryClassificationEvaluator:
         Args:
             preds (list of dicts): Each dict contains 'boxes' (Tensor[N, 4]), 'scores' (Tensor[N]),
                                     and 'labels' (Tensor[N]).
-            targets (list of dicts): Each dict contains 'boxes' (Tensor[M, 4]) and 'labels' (Tensor[M]).
+            targets (list of dicts): Each dict contains 'boxes' (Tensor[M, 4]) and
+            'labels' (Tensor[M]).
 
         Returns:
             ndarray: Confusion matrix (2x2 for binary classification).
