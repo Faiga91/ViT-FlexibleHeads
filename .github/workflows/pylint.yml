@@ -25,8 +25,7 @@ jobs:
         python -c "import torch; print(torch.__version__)"
     - name: Install detectron2
       run: |
-        git clone https://github.com/facebookresearch/detectron2.git
-        python -m pip install -e detectron2
+        python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
