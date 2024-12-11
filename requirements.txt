@@ -13,7 +13,6 @@ tqdm
 scipy
 lvis
 psutil
-pkg_resources
 caffe2
 onnx
 panopticapi
