@@ -23,11 +23,12 @@ from detectron2.utils.visualizer import Visualizer
 from detectron2.data import DatasetMapper
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
 logger = logging.getLogger(__name__)
+logging.getLogger("matplotlib").setLevel(logging.WARNING)
 
 
 def preprocess_image(cfg, image_path):
@@ -42,7 +43,7 @@ def preprocess_image(cfg, image_path):
         inputs: Preprocessed image tensor and metadata for inference.
         image: Original image in RGB format.
     """
-    image = cv2.imread(image_path)
+    image = cv2.imread(image_path)  # pylint: disable=no-member
     if image is None:
         raise FileNotFoundError(f"Image not found at {image_path}")
     image = image[:, :, ::-1]  # Convert BGR to RGB
@@ -116,45 +117,41 @@ def visualize_predictions(cfg, image, outputs):
 if __name__ == "__main__":
     # Paths
     ## Hyper-Kvasir
-    test_json_path = "/dataset/hyper-kvasir/test-COCO-annotations.json"
-    image_dir = "/dataset/hyper-kvasir/test"
+    ANNO_PATH = "/dataset/hyper-kvasir/test-COCO-annotations.json"
+    IMG_DIR = "/dataset/hyper-kvasir/test"
 
     ## OUS-20220203
-    # image_dir = "/dataset/ous-20220203-copy/images/test"
-    # test_json_path = "/dataset/ous-20220203-copy/annotations/test_updated.json"
+    # IMG_DIR = "/dataset/ous-20220203-copy/images/test"
+    # ANNO_PATH = "/dataset/ous-20220203-copy/annotations/test_updated.json"
 
-    config_file = "../projects/ViTDet/configs/COCO/mask_rcnn_vitdet_b_100ep.py"
-    weights_path = "output/model_final.pth"
-    output_dir = "inference"
+    CONFIG_FILE = "../experiments/configs/mask_rcnn_vitdet_config.py"
+    WEIGHTS_PATH = "output/model_final.pth"
+    OUT_DIR = "inference"
 
     # Dataset registration
-    register_coco_instances("my_custom_test_dataset", {}, test_json_path, image_dir)
-    metadata = MetadataCatalog.get("my_custom_test_dataset")
-    logger.info("Dataset Metadata:%s", metadata)
+    register_coco_instances("my_custom_test_dataset", {}, ANNO_PATH, IMG_DIR)
+    meta_data = MetadataCatalog.get("my_custom_test_dataset")
+    logger.info("Dataset Metadata:%s", meta_data)
 
     # Load configuration and model
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    cfg = LazyConfig.load(config_file)
+    curr_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    config = LazyConfig.load(CONFIG_FILE)
 
-    cfg.model.roi_heads.num_classes = 1
-    cfg.model.roi_heads.box_predictor.test_score_thresh = 0.5
-    cfg.train.init_checkpoint = weights_path
-    cfg.train.device = str(device)
-    cfg.dataloader.test.dataset.names = "my_custom_test_dataset"
-    cfg.dataloader.num_workers = 4
-    cfg.dataloader.test.total_batch_size = 2
+    config.model.roi_heads.num_classes = 1
+    config.model.roi_heads.box_predictor.test_score_thresh = 0.5
+    config.train.init_checkpoint = WEIGHTS_PATH
+    config.train.device = str(curr_device)
+    config.dataloader.test.dataset.names = "my_custom_test_dataset"
+    config.dataloader.num_workers = 4
+    config.dataloader.test.total_batch_size = 2
 
-    model = instantiate(cfg.model).to(device)
-    DetectionCheckpointer(model).load(cfg.train.init_checkpoint)
+    vitDet_model = instantiate(config.model).to(curr_device)
+    DetectionCheckpointer(vitDet_model).load(config.train.init_checkpoint)
 
-    model.eval()
+    vitDet_model.eval()
 
-    augmentations = [
-        instantiate(aug) for aug in cfg.dataloader.test.mapper.augmentations
-    ]
-    mapper = DatasetMapper(
-        is_train=False, augmentations=augmentations, image_format="BGR"
-    )
+    augs = [instantiate(aug) for aug in config.dataloader.test.mapper.augmentations]
+    mapper = DatasetMapper(is_train=False, augmentations=augs, image_format="BGR")
     dataset_dicts = DatasetCatalog.get("my_custom_test_dataset")
 
     sampler = SequentialSampler(dataset_dicts)
@@ -164,50 +161,50 @@ if __name__ == "__main__":
 
     data_loader = DataLoader(
         dataset=mapped_dataset,
-        batch_size=cfg.dataloader.test.total_batch_size,
-        num_workers=cfg.dataloader.num_workers,
+        batch_size=config.dataloader.test.total_batch_size,
+        num_workers=config.dataloader.num_workers,
         collate_fn=default_collate,  # Detectron2's collator for batching
     )
     logger.info("Data Loader: %s", data_loader)
 
     # Create output directory
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(OUT_DIR, exist_ok=True)
 
     # Get list of image files
     image_extensions = (".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff")
     image_files = [
-        os.path.join(image_dir, f)
-        for f in os.listdir(image_dir)
+        os.path.join(IMG_DIR, f)
+        for f in os.listdir(IMG_DIR)
         if f.lower().endswith(image_extensions)
     ]
 
     # Run inference using dataloader
     for batch in tqdm(data_loader, desc="Processing images"):
         images = batch["image"]
-        logger.info(f"Processing batch of {len(images)} images")
-        logger.debug(f"Images: {images}")
+        logger.info("Processing batch of %d images", len(images))
+        logger.debug("Images: %s", images)
         file_names = batch.get("file_name", ["unknown"] * len(images))
-        logger.debug(f"File names: {file_names}")
-        inputs = [
+        logger.debug("File names: %s", file_names)
+        ins = [
             {"image": image, "height": image.shape[1], "width": image.shape[2]}
             for image in images
         ]
-        outputs = model(inputs)
-        logger.info(f"Outputs: {outputs}")
+        outs = vitDet_model(ins)
+        logger.info("Outputs: %s", outs)
 
-        for i, output in enumerate(outputs):
-            logger.info(f"Processing file: {file_names[i]}")
+        for i, output in enumerate(outs):
+            logger.info("Processing file: %s", file_names[i])
 
             # Extract the original image for visualization
             original_image = images[i].permute(1, 2, 0).cpu().numpy()
 
             if "instances" in output and len(output["instances"]) > 0:
                 # Visualize predictions
-                result_image = visualize_predictions(cfg, original_image, output)
+                res_image = visualize_predictions(config, original_image, output)
 
                 # Save the visualized result
-                output_path = os.path.join(output_dir, os.path.basename(file_names[i]))
-                cv2.imwrite(output_path, result_image)
-                logger.info(f"Saved visualized output to {output_path}")
+                output_path = os.path.join(OUT_DIR, os.path.basename(file_names[i]))
+                cv2.imwrite(output_path, res_image)  # pylint: disable=no-member
+                logger.info("Saved visualized output to %s", output_path)
             else:
-                logger.info(f"No instances detected in {file_names[i]}")
+                logger.info("No instances detected in %s", file_names[i])
