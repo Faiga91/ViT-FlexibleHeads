@@ -2,10 +2,11 @@
 Based on DETECTRON2's mask_rcnn_vitdet_b_100p.py
 """
 
+import sys
+
 from functools import partial
 import torch
 from torch import nn
-import sys
 from fvcore.common.param_scheduler import MultiStepParamScheduler
 
 from detectron2.data.datasets import register_coco_instances
@@ -19,7 +20,7 @@ from detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputLayers
 from detectron2.solver.build import get_default_optimizer_params
 
 
-sys.path.append("..")
+sys.path.append("..")  # pylint: disable=C0413
 from datasets_loaders.coco_loader_lsj import dataloader
 from models.mask_rcnn_fpn import model
 from models.constants import constants
@@ -133,21 +134,24 @@ model.roi_heads.mask_in_features = None
 model.roi_heads.mask_pooler = None
 
 # Initialization and trainer settings
-train = dict(
-    output_dir="./output",
-    init_checkpoint="",
-    max_iter=90000,
-    amp=dict(enabled=False),  # options for Automatic Mixed Precision
-    ddp=dict(  # options for DistributedDataParallel
-        broadcast_buffers=False,
-        find_unused_parameters=False,
-        fp16_compression=False,
-    ),
-    checkpointer=dict(period=5000, max_to_keep=100),  # options for PeriodicCheckpointer
-    eval_period=5000,
-    log_period=20,
-    device="cuda",
-)
+train = {
+    "output_dir": "./output",
+    "init_checkpoint": "",
+    "max_iter": 90000,
+    "amp": {"enabled": False},  # options for Automatic Mixed Precision
+    "ddp": {  # options for DistributedDataParallel
+        "broadcast_buffers": False,
+        "find_unused_parameters": False,
+        "fp16_compression": False,
+    },
+    "checkpointer": {
+        "period": 5000,
+        "max_to_keep": 100,
+    },  # options for PeriodicCheckpointer
+    "eval_period": 5000,
+    "log_period": 20,
+    "device": "cuda",
+}
 
 train["amp"]["enabled"] = True
 train["ddp"]["fp16_compression"] = True
@@ -156,13 +160,13 @@ train["init_checkpoint"] = BACKBONE_PATH
 # Schedule
 # 100 ep = 184375 iters * 64 images/iter / 118000 images/ep
 # train.max_iter = 184375
-train["max_iter"] = 10
+train["max_iter"] = 1000
 
 lr_multiplier = L(WarmupParamScheduler)(
     scheduler=L(MultiStepParamScheduler)(
         values=[1.0, 0.1, 0.01],
         # milestones=[163889, 177546],
-        milestones=[5, 8],
+        milestones=[500, 800],
         num_updates=train["max_iter"],
     ),
     warmup_length=2 / train["max_iter"],
