@@ -13,7 +13,6 @@ tqdm
 scipy
 lvis
 psutil
-caffe2
 onnx
 panopticapi
 black
