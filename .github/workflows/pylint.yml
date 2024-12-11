@@ -23,6 +23,9 @@ jobs:
     - name: Verify torch installation
       run: |
         python -c "import torch; print(torch.__version__)"
+    - name: Set PYTHONPATH
+      run: |
+        export PYTHONPATH=$(pwd):$PYTHONPATH
     - name: Install detectron2
       run: |
         python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
