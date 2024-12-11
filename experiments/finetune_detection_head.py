@@ -38,8 +38,7 @@ def do_test(cfg, model):
         )
         print_csv_format(ret)
         return ret
-    else:
-        return {}
+    return {}
 
 
 def do_train(args, cfg):
@@ -63,7 +62,7 @@ def do_train(args, cfg):
     """
     model = instantiate(cfg.model)
     # logger = logging.getLogger("detectron2")
-    logger.info(f"Model:\n{model}")
+    logger.info("Model: %s \n", model)
     model.to(cfg.train.device)
 
     cfg.optimizer.params.model = model
