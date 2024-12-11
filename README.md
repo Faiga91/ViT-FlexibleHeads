@@ -3,8 +3,8 @@ Vision Transformer with Flexible Heads.
 
 
 ## Install Dependencies
-
-Detectron2 is the primary dependency for this project. Follow the steps below to install it:
+- Install PyTorch from the official website [here](https://pytorch.org/get-started/locally/)
+- Detectron2 is the primary dependency for this project. Follow the steps below to install it:
 
 1. You can install Detectron2 either from source or via pip.
 2. To address most of the future warnings, you can use our custom fork by running the following command:
