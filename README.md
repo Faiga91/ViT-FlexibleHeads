@@ -26,9 +26,6 @@ pip install -r requirements.txt
 ## Project Structure 
 The repository is organized as follows: 
 
-
-## Project Structure
-
 ```plaintext
 ViT-FlexibleHeads/
 ├── datasets_loaders/        # Dataset loading and preprocessing utilities
