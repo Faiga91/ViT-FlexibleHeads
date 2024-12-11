@@ -3,7 +3,7 @@ matplotlib
 opencv-python
 torch
 torchvision
-PIL
+Pillow
 pycocotools
 yacs
 termcolor
