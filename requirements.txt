@@ -1,6 +1,6 @@
 fvcore
 matplotlib
-cv2
+opencv-python
 torch
 torchvision
 PIL
