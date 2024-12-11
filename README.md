@@ -23,3 +23,21 @@ Ensure all additional dependencies listed in the `requirements.txt` file are ins
 pip install -r requirements.txt
 ```
 
+## Project Structure 
+The repository is organized as follows: 
+
+
+## Project Structure
+
+```plaintext
+ViT-FlexibleHeads/
+├── datasets_loaders/        # Dataset loading and preprocessing utilities
+├── evaluation/              # Scripts for model evaluation
+├── experiments/             # Experiment setups and configurations
+├── inference/               # Inference scripts for running predictions
+├── models/                  # Model definitions and utilities
+├── .gitignore               # Git ignore rules
+├── .pre-commit-config.yaml  # Pre-commit hook configuration
+├── LICENSE                  # Project license
+├── README.md                # Project overview
+├── requirements.txt         # Python dependencies
