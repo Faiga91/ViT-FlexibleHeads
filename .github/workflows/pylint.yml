@@ -21,6 +21,11 @@ jobs:
         python -m pip install pylint
         pip3 install torch torchvision torchaudio
         python -m pip install -r requirements.txt
+    - name: Verify torch installation
+      run: |
+        python -c "import torch; print(torch.__version__)"
+    - name: Install detectron2
+      run: |
         git clone https://github.com/facebookresearch/detectron2.git
         python -m pip install -e detectron2
     - name: Analysing the code with pylint
