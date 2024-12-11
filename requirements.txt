@@ -20,7 +20,6 @@ av
 iopath
 omegaconf
 hydra
-yaml
 pydoc
 submitit
 cloudpickle
