@@ -20,10 +20,8 @@ av
 iopath
 omegaconf
 hydra
-pydoc
 submitit
 cloudpickle
-packaging
 timm
 pandas
 fairscale
