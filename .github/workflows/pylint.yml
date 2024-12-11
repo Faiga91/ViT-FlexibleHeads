@@ -19,9 +19,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
-        python -m pip install 'git+https://github.com/Faiga91/detectron2.git'
         pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu
         pip install -r requirements.txt
+        python -m pip install 'git+https://github.com/Faiga91/detectron2.git'
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
