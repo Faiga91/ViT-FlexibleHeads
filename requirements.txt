@@ -1,8 +1,6 @@
 fvcore
 matplotlib
 opencv-python
-torch
-torchvision
 Pillow
 pycocotools
 yacs
