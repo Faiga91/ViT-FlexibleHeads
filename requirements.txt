@@ -19,7 +19,6 @@ isort
 av
 iopath
 omegaconf
-hydra
 submitit
 cloudpickle
 timm
