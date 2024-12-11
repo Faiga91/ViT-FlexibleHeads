@@ -14,7 +14,6 @@ scipy
 lvis
 psutil
 onnx
-panopticapi
 black
 isort
 av
