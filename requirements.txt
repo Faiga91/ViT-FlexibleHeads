@@ -25,5 +25,4 @@ cloudpickle
 timm
 pandas
 fairscale
-pytorch3d
 pytorch_lightning
