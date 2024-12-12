@@ -165,3 +165,7 @@ experiments/output/
 experiments/inference/
 experiments/eval_results
 experiments/results/
+vit_flexible_heads/experiments/logs/
+vit_flexible_heads/experiments/output/
+eval_results/
+results/
