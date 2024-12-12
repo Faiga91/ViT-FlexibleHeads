@@ -24,10 +24,12 @@ jobs:
           python-version: '3.13'
 
       # ADJUST THIS: install all dependencies (including pdoc)
-      - run: pip install -e .
+      - run: 
+        pip install -r requirements.txt
+        pip install pydoc 
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: python docs/make.py
+      - run: python generate_docs.py
 
       - uses: actions/upload-pages-artifact@v3
         with:
