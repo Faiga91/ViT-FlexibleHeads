@@ -3,9 +3,25 @@ import subprocess
 
 os.environ["PDOC_DISPLAY_ENV_VARS"] = "1"
 
+def generate_index(output_dir):
+    """Create an index.html file linking to all generated HTML files."""
+    index_file = os.path.join(output_dir, "index.html")
+    with open(index_file, "w") as f:
+        f.write("<html><head><title>Module Documentation Index</title></head><body>\n")
+        f.write("<h1>Module Documentation</h1>\n<ul>\n")
+
+        # Recursively find all HTML files except index.html
+        for root, _, files in os.walk(output_dir):
+            for file in sorted(files):
+                if file.endswith(".html") and file != "index.html":
+                    relative_path = os.path.relpath(os.path.join(root, file), output_dir)
+                    module_name = os.path.splitext(file)[0]  # Extract the module name
+                    f.write(f'<li><a href="{relative_path}">{module_name}</a></li>\n')
+
+        f.write("</ul>\n</body></html>\n")
 
 def generate_docs(package_dir, output_dir):
-    """Generate Markdown documentation for all Python files in a package directory."""
+    """Generate HTML documentation for all Python files in a package directory."""
     os.makedirs(output_dir, exist_ok=True)
     os.environ["PYTHONPATH"] = os.path.abspath(package_dir)
 
@@ -26,6 +42,8 @@ def generate_docs(package_dir, output_dir):
                 except subprocess.CalledProcessError:
                     print(f"Failed to generate documentation for module: {module_name}")
 
+    # Generate a custom index.html after processing all modules
+    generate_index(output_dir)
 
 if __name__ == "__main__":
     generate_docs("vit_flexible_heads", "docs")
