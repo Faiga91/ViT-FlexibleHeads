@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module evaluation.test_detection_head</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="evaluation.html"><font color="#ffffff">evaluation</font></a>.test_detection_head</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/evaluation/test_detection_head.py">/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/evaluation/test_detection_head.py</a></font></td></tr></table>
+    <p><tt>Test&nbsp;the&nbsp;detection&nbsp;head&nbsp;of&nbsp;a&nbsp;model&nbsp;on&nbsp;a&nbsp;custom&nbsp;dataset&nbsp;with&nbsp;custom&nbsp;augmentations.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="detectron2.data.transforms.html">detectron2.data.transforms</a><br>
+<a href="cv2.html">cv2</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="shutil.html">shutil</a><br>
+<a href="torch.html">torch</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="evaluation.test_detection_head.html#MappedDataset">MappedDataset</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MappedDataset">class <strong>MappedDataset</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MappedDataset">MappedDataset</a>(dataset,&nbsp;mapper)<br>
+&nbsp;<br>
+Dataset&nbsp;class&nbsp;to&nbsp;apply&nbsp;a&nbsp;custom&nbsp;mapper&nbsp;to&nbsp;the&nbsp;dataset.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MappedDataset-__getitem__"><strong>__getitem__</strong></a>(self, idx)</dt></dl>
+
+<dl><dt><a name="MappedDataset-__init__"><strong>__init__</strong></a>(self, dataset, mapper)</dt><dd><tt>Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dataset&nbsp;(list&nbsp;or&nbsp;iterable):&nbsp;Original&nbsp;dataset.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mapper&nbsp;(callable):&nbsp;Function&nbsp;to&nbsp;map&nbsp;dataset&nbsp;entries.</tt></dd></dl>
+
+<dl><dt><a name="MappedDataset-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-custom_mapper"><strong>custom_mapper</strong></a>(dataset_dict, augmentations)</dt><dd><tt>Custom&nbsp;mapper&nbsp;to&nbsp;create&nbsp;instances&nbsp;for&nbsp;each&nbsp;dataset&nbsp;entry&nbsp;with&nbsp;augmentations.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dataset_dict&nbsp;(dict):&nbsp;A&nbsp;single&nbsp;dataset&nbsp;entry.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;augmentations&nbsp;(list):&nbsp;A&nbsp;list&nbsp;of&nbsp;augmentation&nbsp;transforms.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;Updated&nbsp;dataset&nbsp;entry&nbsp;with&nbsp;`instances`.</tt></dd></dl>
+ <dl><dt><a name="-do_test"><strong>do_test</strong></a>(cfg, model)</dt><dd><tt>Run&nbsp;inference&nbsp;on&nbsp;the&nbsp;test&nbsp;dataset&nbsp;and&nbsp;compute&nbsp;evaluation&nbsp;metrics.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cfg:&nbsp;Configuration&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;dataloader&nbsp;and&nbsp;evaluator&nbsp;settings.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;model:&nbsp;Trained&nbsp;model&nbsp;for&nbsp;inference.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;Evaluation&nbsp;results&nbsp;and&nbsp;classification&nbsp;metrics.</tt></dd></dl>
+ <dl><dt><a name="-trivial_batch_collator"><strong>trivial_batch_collator</strong></a>(batch)</dt><dd><tt>function&nbsp;to&nbsp;collate&nbsp;a&nbsp;batch&nbsp;of&nbsp;data</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BASE_DIR</strong> = '/home/faiga/ViT-FlexibleHeads/vit_flexible_heads'<br>
+<strong>CONFIG_FILE</strong> = '/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/experiments/configs/mask_rcnn_vitdet_config.py'<br>
+<strong>DatasetCatalog</strong> = DatasetCatalog(registered datasets: coco_2014_tr..., my_custom_dataset_train, my_custom_dataset_val)<br>
+<strong>IMAGE_DIR</strong> = '/dataset/hyper-kvasir/test'<br>
+<strong>SCRIPT_DIR</strong> = '/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/evaluation'<br>
+<strong>TEST_JSON_PATH</strong> = '/dataset/hyper-kvasir/test-COCO-annotations.json'<br>
+<strong>WEIGHTS_PATH</strong> = '/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/experiments/output/model_final.pth'<br>
+<strong>augs</strong> = [Resize(shape=(512, 512))]<br>
+<strong>config</strong> = {'dataloader': {'train': {'dataset': {'names': '..., '_target_': &lt;class 'torch.optim.adamw.AdamW'&gt;}}<br>
+<strong>dataset_dicts</strong> = [{'annotations': [{'bbox': [314, 386, 56, 49], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju0tl3uz8blh0993wxvn7ly3.jpg', 'height': 529, 'image_id': 10, 'width': 622}, {'annotations': [{'bbox': [185, 228, 123, 122], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5klveuff6w0871wbibgh3m.jpg', 'height': 530, 'image_id': 14, 'width': 574}, {'annotations': [{'bbox': [259, 125, 237, 230], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5ktjwofed70817eg58ef7u.jpg', 'height': 547, 'image_id': 17, 'width': 625}, {'annotations': [{'bbox': [350, 132, 272, 383], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5o4pk9h0720755lgp9jq8m.jpg', 'height': 530, 'image_id': 21, 'width': 622}, {'annotations': [{'bbox': [118, 222, 284, 242], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5ukkg6kv7u08011x2b6zl5.jpg', 'height': 510, 'image_id': 31, 'width': 622}, {'annotations': [{'bbox': [318, 213, 123, 129], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5uzmaol56l0817flxh4w9p.jpg', 'height': 529, 'image_id': 33, 'width': 623}, {'annotations': [{'bbox': [256, 231, 147, 151], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5v8pgplg6k0755rvi2t63h.jpg', 'height': 530, 'image_id': 34, 'width': 570}, {'annotations': [{'bbox': [231, 83, 324, 342], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5vi4nxlc530817uoqm2m7a.jpg', 'height': 530, 'image_id': 38, 'width': 619}, {'annotations': [{'bbox': [78, 288, 165, 227], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju5vwbr4lhqn0987a1pji0ux.jpg', 'height': 530, 'image_id': 40, 'width': 570}, {'annotations': [{'bbox': [144, 99, 156, 145], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju0vtox5ain6099360pu62rp.jpg', 'height': 531, 'image_id': 78, 'width': 622}, {'annotations': [{'bbox': [143, 8, 206, 155], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju14pxbaoksp0835qzorx6g6.jpg', 'height': 530, 'image_id': 84, 'width': 622}, {'annotations': [{'bbox': [268, 265, 167, 220], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju6z2616wqbk07555bvnuyr1.jpg', 'height': 531, 'image_id': 94, 'width': 554}, {'annotations': [{'bbox': [216, 183, 110, 123], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju6ur9l9v9jq0755paud9uka.jpg', 'height': 529, 'image_id': 113, 'width': 561}, {'annotations': [{'bbox': [202, 42, 95, 96], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}, {'bbox': [313, 138, 133, 116], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju6v1m1xv07w09870ah3njy1.jpg', 'height': 530, 'image_id': 117, 'width': 565}, {'annotations': [{'bbox': [329, 227, 124, 115], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju6v5ilsv8hk0850rb5sgh6o.jpg', 'height': 530, 'image_id': 120, 'width': 622}, {'annotations': [{'bbox': [351, 63, 178, 171], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju6vvxsev9y30987kespucdg.jpg', 'height': 475, 'image_id': 129, 'width': 620}, {'annotations': [{'bbox': [245, 211, 100, 158], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju16d65tzw9d0799ouslsw25.jpg', 'height': 530, 'image_id': 132, 'width': 481}, {'annotations': [{'bbox': [93, 123, 415, 387], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju17g6ykn1cs0993dww6qdi8.jpg', 'height': 510, 'image_id': 139, 'width': 605}, {'annotations': [{'bbox': [455, 320, 75, 112], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju18ibp219ub08783i6o98g7.jpg', 'height': 528, 'image_id': 150, 'width': 615}, {'annotations': [{'bbox': [215, 214, 137, 133], 'bbox_mode': &lt;BoxMode.XYWH_ABS: 1&gt;, 'category_id': 0, 'iscrowd': 0}], 'file_name': '/dataset/hyper-kvasir/test/cju1brhsj3rls0855a1vgdlen.jpg', 'height': 530, 'image_id': 160, 'width': 570}, ...]<br>
+<strong>device</strong> = device(type='cuda')<br>
+<strong>inf_results</strong> = {'binary_classification_metrics': {'Accuracy': 0.0, 'F1 Score': 0, 'Per-polyp Specificity': 0, 'Precision': 0, 'Sensitivity (Recall)': 0.0}, 'detection_results': OrderedDict([('bbox', {'AP': nan, 'AP50': nan, 'AP75': nan, 'APs': nan, 'APm': nan, 'APl': nan})])}<br>
+<strong>k</strong> = 'Per-polyp Specificity'<br>
+<strong>key</strong> = 'binary_classification_metrics'<br>
+<strong>logger</strong> = &lt;Logger evaluation.logging_utils (DEBUG)&gt;<br>
+<strong>mapped_dataset</strong> = &lt;evaluation.test_detection_head.MappedDataset object&gt;<br>
+<strong>v</strong> = 0<br>
+<strong>value</strong> = {'Accuracy': 0.0, 'F1 Score': 0, 'Per-polyp Specificity': 0, 'Precision': 0, 'Sensitivity (Recall)': 0.0}<br>
+<strong>vitDet_model</strong> = GeneralizedRCNN(
+  (backbone): SimpleFeaturePyra...tures=512, out_features=4, bias=True)
+    )
+  )
+)<br>
+<strong>wrapped_dataset</strong> = &lt;detectron2.data.common.DatasetFromList object&gt;</td></tr></table>
+</body></html>

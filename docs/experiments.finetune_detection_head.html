@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module experiments.finetune_detection_head</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="experiments.html"><font color="#ffffff">experiments</font></a>.finetune_detection_head</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/experiments/finetune_detection_head.py">/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/experiments/finetune_detection_head.py</a></font></td></tr></table>
+    <p><tt>Code&nbsp;based&nbsp;on&nbsp;detectron2/tools/train_net.py&nbsp;script.<br>
+Training&nbsp;script&nbsp;using&nbsp;the&nbsp;new&nbsp;"LazyConfig"&nbsp;python&nbsp;config&nbsp;files.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="detectron2.utils.comm.html">detectron2.utils.comm</a><br>
+</td><td width="25%" valign=top><a href="detectron2.engine.hooks.html">detectron2.engine.hooks</a><br>
+</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="torch.html">torch</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-do_test"><strong>do_test</strong></a>(cfg, model)</dt><dd><tt>Run&nbsp;inference&nbsp;on&nbsp;the&nbsp;test&nbsp;set&nbsp;and<br>
+return&nbsp;the&nbsp;evaluation&nbsp;results.</tt></dd></dl>
+ <dl><dt><a name="-do_train"><strong>do_train</strong></a>(args, cfg)</dt><dd><tt>Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cfg:&nbsp;an&nbsp;object&nbsp;with&nbsp;the&nbsp;following&nbsp;attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model:&nbsp;instantiate&nbsp;to&nbsp;a&nbsp;module<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataloader.{train,test}:&nbsp;instantiate&nbsp;to&nbsp;dataloaders<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataloader.evaluator:&nbsp;instantiate&nbsp;to&nbsp;evaluator&nbsp;for&nbsp;test&nbsp;set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optimizer:&nbsp;instantaite&nbsp;to&nbsp;an&nbsp;optimizer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_multiplier:&nbsp;instantiate&nbsp;to&nbsp;a&nbsp;fvcore&nbsp;scheduler<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;train:&nbsp;other&nbsp;misc&nbsp;config&nbsp;defined&nbsp;in&nbsp;`configs/common/train.py`,&nbsp;including:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_dir&nbsp;(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_checkpoint&nbsp;(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amp.enabled&nbsp;(bool)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_iter&nbsp;(int)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval_period,&nbsp;log_period&nbsp;(int)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device&nbsp;(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;checkpointer&nbsp;(dict)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ddp&nbsp;(dict)</tt></dd></dl>
+ <dl><dt><a name="-invoke_main"><strong>invoke_main</strong></a>() -&gt; None</dt><dd><tt>Invoke&nbsp;the&nbsp;main&nbsp;function.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>(args)</dt><dd><tt>Main&nbsp;function&nbsp;to&nbsp;run&nbsp;training&nbsp;or&nbsp;evaluation</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>logger</strong> = &lt;Logger detectron2 (WARNING)&gt;</td></tr></table>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module datasets_loaders.coco_loader_lsj</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="datasets_loaders.html"><font color="#ffffff">datasets_loaders</font></a>.coco_loader_lsj</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/datasets_loaders/coco_loader_lsj.py">/home/faiga/ViT-FlexibleHeads/vit_flexible_heads/datasets_loaders/coco_loader_lsj.py</a></font></td></tr></table>
+    <p><tt>Based&nbsp;on&nbsp;the&nbsp;COCO&nbsp;loader&nbsp;from&nbsp;DETECTRON2,&nbsp;<br>
+this&nbsp;script&nbsp;modifies&nbsp;the&nbsp;default&nbsp;COCO&nbsp;loader&nbsp;<br>
+to&nbsp;remove&nbsp;mask&nbsp;annotations.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="detectron2.data.transforms.html">detectron2.data.transforms</a><br>
+</td><td width="25%" valign=top><a href="detectron2.model_zoo.html">detectron2.model_zoo</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="datasets_loaders.coco_loader_lsj.html#CustomDatasetMapper">CustomDatasetMapper</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CustomDatasetMapper">class <strong>CustomDatasetMapper</strong></a>(<a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#CustomDatasetMapper">CustomDatasetMapper</a>(is_train:&nbsp;bool,&nbsp;*,&nbsp;augmentations:&nbsp;List[Union[detectron2.data.transforms.augmentation.Augmentation,&nbsp;fvcore.transforms.transform.Transform]],&nbsp;image_format:&nbsp;str,&nbsp;use_instance_mask:&nbsp;bool&nbsp;=&nbsp;False,&nbsp;use_keypoint:&nbsp;bool&nbsp;=&nbsp;False,&nbsp;instance_mask_format:&nbsp;str&nbsp;=&nbsp;'polygon',&nbsp;keypoint_hflip_indices:&nbsp;Optional[numpy.ndarray]&nbsp;=&nbsp;None,&nbsp;precomputed_proposal_topk:&nbsp;Optional[int]&nbsp;=&nbsp;None,&nbsp;recompute_boxes:&nbsp;bool&nbsp;=&nbsp;False)<br>
+&nbsp;<br>
+Custom&nbsp;mapper&nbsp;to&nbsp;remove&nbsp;masks<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="datasets_loaders.coco_loader_lsj.html#CustomDatasetMapper">CustomDatasetMapper</a></dd>
+<dd><a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CustomDatasetMapper-__call__"><strong>__call__</strong></a>(self, dataset_dict)</dt><dd><tt>Modify&nbsp;the&nbsp;default&nbsp;<a href="detectron2.data.dataset_mapper.html#DatasetMapper">DatasetMapper</a>&nbsp;to&nbsp;remove&nbsp;mask&nbsp;annotations.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a>:<br>
+<dl><dt><a name="CustomDatasetMapper-__init__"><strong>__init__</strong></a>(self, is_train: bool, *, augmentations: List[Union[detectron2.data.transforms.augmentation.Augmentation, fvcore.transforms.transform.Transform]], image_format: str, use_instance_mask: bool = False, use_keypoint: bool = False, instance_mask_format: str = 'polygon', keypoint_hflip_indices: Optional[numpy.ndarray] = None, precomputed_proposal_topk: Optional[int] = None, recompute_boxes: bool = False)</dt><dd><tt>NOTE:&nbsp;this&nbsp;interface&nbsp;is&nbsp;experimental.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;is_train:&nbsp;whether&nbsp;it's&nbsp;used&nbsp;in&nbsp;training&nbsp;or&nbsp;inference<br>
+&nbsp;&nbsp;&nbsp;&nbsp;augmentations:&nbsp;a&nbsp;list&nbsp;of&nbsp;augmentations&nbsp;or&nbsp;deterministic&nbsp;transforms&nbsp;to&nbsp;apply<br>
+&nbsp;&nbsp;&nbsp;&nbsp;image_format:&nbsp;an&nbsp;image&nbsp;format&nbsp;supported&nbsp;by&nbsp;:func:`detection_utils.read_image`.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;use_instance_mask:&nbsp;whether&nbsp;to&nbsp;process&nbsp;instance&nbsp;segmentation&nbsp;annotations,&nbsp;if&nbsp;available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;use_keypoint:&nbsp;whether&nbsp;to&nbsp;process&nbsp;keypoint&nbsp;annotations&nbsp;if&nbsp;available<br>
+&nbsp;&nbsp;&nbsp;&nbsp;instance_mask_format:&nbsp;one&nbsp;of&nbsp;"polygon"&nbsp;or&nbsp;"bitmask".&nbsp;Process&nbsp;instance&nbsp;segmentation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;masks&nbsp;into&nbsp;this&nbsp;format.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keypoint_hflip_indices:&nbsp;see&nbsp;:func:`detection_utils.create_keypoint_hflip_indices`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;precomputed_proposal_topk:&nbsp;if&nbsp;given,&nbsp;will&nbsp;load&nbsp;pre-computed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proposals&nbsp;from&nbsp;dataset_dict&nbsp;and&nbsp;keep&nbsp;the&nbsp;top&nbsp;k&nbsp;proposals&nbsp;for&nbsp;each&nbsp;image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;recompute_boxes:&nbsp;whether&nbsp;to&nbsp;overwrite&nbsp;bounding&nbsp;box&nbsp;annotations<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;computing&nbsp;tight&nbsp;bounding&nbsp;boxes&nbsp;from&nbsp;instance&nbsp;mask&nbsp;annotations.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a>:<br>
+<dl><dt><a name="CustomDatasetMapper-from_config"><strong>from_config</strong></a>(cfg, is_train: bool = True)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="detectron2.data.dataset_mapper.html#DatasetMapper">detectron2.data.dataset_mapper.DatasetMapper</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>IMG_SIZE</strong> = 512<br>
+<strong>dataloader</strong> = {'train': {'dataset': {'names': 'coco_2017_train...ron2.evaluation.coco_evaluation.COCOEvaluator'&gt;}}</td></tr></table>
+</body></html>
