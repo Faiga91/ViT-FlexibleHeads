@@ -24,7 +24,7 @@ jobs:
           python-version: '3.13'
 
       # ADJUST THIS: install all dependencies (including pdoc)
-      - run: 
+      - run: |
         pip install -r requirements.txt
         pip install pydoc 
       # ADJUST THIS: build your documentation into docs/.
