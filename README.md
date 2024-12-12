@@ -1,6 +1,9 @@
 # ViT-FlexibleHeads
 Vision Transformer with Flexible Heads. 
 
+[![Python 3.8](https://img.shields.io/badge/python-=%3E3.8-blue.svg)](https://www.python.org/downloads/release/python-3816/)
+[![Pylint](https://github.com/Faiga91/ViT-FlexibleHeads/actions/workflows/pylint.yml/badge.svg)](https://github.com/Faiga91/ViT-FlexibleHeads/actions/workflows/pylint.yml)
+
 
 ## Install Dependencies
 - Install PyTorch from the official website [here](https://pytorch.org/get-started/locally/)
