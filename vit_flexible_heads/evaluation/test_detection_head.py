@@ -32,8 +32,12 @@ logger = configure_logging()
 TEST_JSON_PATH = "/dataset/hyper-kvasir/test-COCO-annotations.json"
 IMAGE_DIR = "/dataset/hyper-kvasir/test"
 
-CONFIG_FILE = "../experiments/configs/mask_rcnn_vitdet_config.py"
-WEIGHTS_PATH = "../experiments/output/model_final.pth"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+CONFIG_FILE = os.path.join(
+    BASE_DIR, "experiments", "configs", "mask_rcnn_vitdet_config.py"
+)
+WEIGHTS_PATH = os.path.join(BASE_DIR, "experiments", "output", "model_final.pth")
 
 
 def trivial_batch_collator(batch):
