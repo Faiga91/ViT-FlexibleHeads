@@ -2,6 +2,7 @@
 Based on the COCO loader from DETECTRON2, 
 this script modifies the default COCO loader 
 to remove mask annotations.
+This module is used to load the COCO dataset.
 """
 
 import detectron2.data.transforms as T
@@ -21,6 +22,8 @@ class CustomDatasetMapper(DatasetMapper):
     def __call__(self, dataset_dict):
         """
         Modify the default DatasetMapper to remove mask annotations.
+        Args:
+            dataset_dict (dict): Metadata of a single image.
         """
         dataset_dict = super().__call__(dataset_dict)
         if "instances" in dataset_dict and dataset_dict["instances"].has("gt_masks"):
