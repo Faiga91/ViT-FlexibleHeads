@@ -62,7 +62,8 @@ Navigate to the experiments folder, which contains the scripts for finetunning, 
     ```
 
 2. The configuration file `vit_flexible_heads/experiments/configs/mask_rcnn_vitdet_config.py`  sets up a training environment for a custom object detection model using a Vision Transformer (ViT) backbone integrated into Detectron2’s Mask R-CNN framework.
-    2.1 Dataset Registeration: 
+
+   2.1 Dataset Registeration: 
     ```python
     register_coco_instances("my_custom_dataset_train", {}, "/path/to/train-annotations.json", "/path/to/train-images")
     register_coco_instances("my_custom_dataset_val", {}, "/path/to/val-annotations.json", "/path/to/val-images")
