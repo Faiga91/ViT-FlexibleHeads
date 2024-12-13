@@ -1,9 +1,6 @@
 """
 Based on DETECTRON2's mask_rcnn_vitdet_b_100p.py
 """
-
-import sys
-
 from functools import partial
 import torch
 from torch import nn
@@ -20,10 +17,9 @@ from detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputLayers
 from detectron2.solver.build import get_default_optimizer_params
 
 
-sys.path.append("..")  # pylint: disable=C0413
-from datasets_loaders.coco_loader_lsj import dataloader
-from models.mask_rcnn_fpn import model
-from models.constants import constants
+from vit_flexible_heads.datasets_loaders.coco_loader_lsj import dataloader
+from vit_flexible_heads.models.mask_rcnn_fpn import model
+from vit_flexible_heads.models.constants import constants
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
