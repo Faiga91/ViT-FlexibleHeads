@@ -27,11 +27,10 @@ jobs:
           # Install Sphinx and the Read the Docs theme
           pip install sphinx sphinx_rtd_theme
 
-      # Build your Sphinx documentation
-      # Make sure your Sphinx `conf.py` uses `html_theme = 'sphinx_rtd_theme'`.
-      # Adjust source/build paths as needed.
+      # Adjust these paths according to where your conf.py and index.rst are located.
+      # If conf.py and index.rst are inside docs/:
       - name: Build documentation
-        run: sphinx-build -b html docs/source docs/build/html
+        run: sphinx-build -b html docs docs/build/html
 
       - uses: actions/upload-pages-artifact@v3
         with:
