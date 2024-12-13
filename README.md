@@ -41,13 +41,16 @@ ViT-FlexibleHeads/
 ├── LICENSE                  # Project license
 ├── README.md                # Project overview
 ├── requirements.txt         # Python dependencies
+```
 
 ## How to use? 
 Navigate to the experiments folder, which contains the scripts for finetunning, inference and testing.
 
 1. The `train_ViTDET.sh` script serves as the main entry point for fine-tuning the object detection head of a Vision Transformer (ViTDet) model using a Mask R-CNN configuration. This script encapsulates all the steps required to start the training process with minimal setup.
 
+
 1a. Make the script execuatble 
+
 
 ```
 chmod +x train_ViTDET.sh
@@ -57,3 +60,4 @@ chmod +x train_ViTDET.sh
 ```
 ./train_ViTDET.sh
 ```
+
