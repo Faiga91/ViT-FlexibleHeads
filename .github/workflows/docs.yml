@@ -1,43 +1,42 @@
 name: website
-# build the documentation whenever there are new commits on main
+
 on:
   push:
     branches:
       - doc
-    # Alternative: only build for tags.
-    # tags:
-    #   - '*'
-# security: restrict permissions for CI jobs.
+
 permissions:
   contents: read
+
 jobs:
-  # Build the documentation and upload the static HTML files as an artifact.
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v3
         with:
           python-version: '3.10'
 
-      # Install all dependencies (including pdoc)
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install wheel
+          python -m pip install --upgrade pip wheel
           python -m pip install torch torchvision torchaudio
           python -m pip install --no-build-isolation 'git+https://github.com/facebookresearch/detectron2.git'
-          pip install -r requirements.txt
-          pip install pdoc 
-      # Build your documentation into docs/.
-      # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
-      - run: python generate_docs.py
+          # Install Sphinx and the Read the Docs theme
+          pip install sphinx sphinx_rtd_theme
+
+      # Build your Sphinx documentation
+      # Make sure your Sphinx `conf.py` uses `html_theme = 'sphinx_rtd_theme'`.
+      # Adjust source/build paths as needed.
+      - name: Build documentation
+        run: sphinx-build -b html docs/source docs/build/html
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/
-  # Deploy the artifact to GitHub pages.
-  # This is a separate job so that only actions/deploy-pages has the necessary permissions.
+          path: docs/build/html
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
