@@ -41,7 +41,10 @@ WEIGHTS_PATH = os.path.join(BASE_DIR, "experiments", "output", "model_final.pth"
 
 
 def trivial_batch_collator(batch):
-    """function to collate a batch of data"""
+    """function to collate a batch of data
+    Args:
+        batch (list): list of data
+    """
     return batch
 
 

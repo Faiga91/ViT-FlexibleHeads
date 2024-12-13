@@ -28,8 +28,14 @@ torch.cuda.empty_cache()
 
 
 def do_test(cfg, model):
-    """Run inference on the test set and
-    return the evaluation results."""
+    """
+    Run inference on the test set and
+    Args:
+        cfg: the config object
+        model: the model
+    Returns:
+        dict: evaluation results
+    """
     if "evaluator" in cfg.dataloader:
         ret = inference_on_dataset(
             model,
