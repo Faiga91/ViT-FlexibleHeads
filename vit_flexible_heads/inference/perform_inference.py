@@ -120,10 +120,6 @@ if __name__ == "__main__":
     ANNO_PATH = "/dataset/hyper-kvasir/test-COCO-annotations.json"
     IMG_DIR = "/dataset/hyper-kvasir/test"
 
-    ## OUS-20220203
-    # IMG_DIR = "/dataset/ous-20220203-copy/images/test"
-    # ANNO_PATH = "/dataset/ous-20220203-copy/annotations/test_updated.json"
-
     CONFIG_FILE = "../experiments/configs/mask_rcnn_vitdet_config.py"
     WEIGHTS_PATH = "output/model_final.pth"
     OUT_DIR = "inference"
