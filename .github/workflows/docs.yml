@@ -1,5 +1,4 @@
 name: website
-
 # build the documentation whenever there are new commits on main
 on:
   push:
@@ -8,11 +7,9 @@ on:
     # Alternative: only build for tags.
     # tags:
     #   - '*'
-
 # security: restrict permissions for CI jobs.
 permissions:
   contents: read
-
 jobs:
   # Build the documentation and upload the static HTML files as an artifact.
   build:
@@ -36,11 +33,9 @@ jobs:
       # Build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
       - run: python generate_docs.py
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
-
   # Deploy the artifact to GitHub pages.
   # This is a separate job so that only actions/deploy-pages has the necessary permissions.
   deploy:
