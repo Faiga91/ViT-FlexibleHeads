@@ -49,15 +49,13 @@ Navigate to the experiments folder, which contains the scripts for finetunning, 
 1. The `train_ViTDET.sh` script serves as the main entry point for fine-tuning the object detection head of a Vision Transformer (ViTDet) model using a Mask R-CNN configuration. This script encapsulates all the steps required to start the training process with minimal setup.
 
 
-1a. Make the script execuatble 
+    1a. Make the script execuatble 
+    ```
+    chmod +x train_ViTDET.sh
+    ```
+    1.b Run the script 
 
-
-```
-chmod +x train_ViTDET.sh
-```
-1.b Run the script 
-
-```
-./train_ViTDET.sh
-```
+    ```
+    ./train_ViTDET.sh
+    ```
 
