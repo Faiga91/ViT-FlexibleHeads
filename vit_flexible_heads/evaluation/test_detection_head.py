@@ -24,10 +24,6 @@ from .logging_utils import configure_logging
 # Set up logging
 logger = configure_logging()
 
-## OUS-20220203
-# TEST_JSON_PATH = "/dataset/ous-20220203-copy/annotations/test_updated.json"
-# IMAGE_DIR = "/dataset/ous-20220203-copy/images/test"
-
 ## Hyper-Kvasir
 TEST_JSON_PATH = "/dataset/hyper-kvasir/test-COCO-annotations.json"
 IMAGE_DIR = "/dataset/hyper-kvasir/test"
